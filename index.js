@@ -1,5 +1,6 @@
 const express = require("express");
 
+const morgan = require('morgan');
 const fs = require("fs");
 
 const data = JSON.parse(fs.readFileSync("data.json", "utf-8"));
@@ -7,33 +8,40 @@ const product = data.product;
 const index = fs.readFileSync("index.html", "utf-8");
 
 const server = express();
-
 /*******************************MIDDLEWARE******************************************/
 server.use(express.json()); //body parser
-server.use(express.urlencoded()) // url parser jaisa kuch hai!
+// server.use(express.urlencoded()) // url parser jaisa kuch hai!
 
+server.use(morgan('default'));
 server.use(express.static("public"));
-server.use((req, res, next) => {
-  console.log(
-    req.method,
-    req.ip,
-    req.hostname,
-    req.get("User-agent"),
-    new Date()
-  );
-  next();
-});
+// server.use((req, res, next) => {
+//   console.log(
+//     req.method,
+//     req.ip,
+//     req.hostname,
+//     req.get("User-agent"),
+//     new Date()
+//   );
+//   next();
+// });
+
+
 
 const auth = (req, res, next) => {
-  console.log(req.body);
-  if (req.body.password == "234") {
-    next();
-  } else {
-    res.sendStatus(401);
-  }
+//   console.log(req.body);
+//   if (req.body.password == "234") {
+//     next();
+//   } else {
+//     res.sendStatus(401);
+//   }
+next();
 };
 
 /*********API*********ENDPOINT*************ROUTE*********************** */
+server.get("/user/:id", auth, (req, res) => {
+    console.log(req.params); // it reads the parametes passed in the url.
+    res.json({type : "GET"});
+  });
 server.get("/", auth, (req, res) => {
   // res.sendStatus(404);
   // res.json(product);
