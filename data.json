@@ -1,28 +1,28 @@
 {
-  "product": [
+  "users": [
     {
       "id": 1,
       "name": "sumit",
       "course": "computer science"
     },
     {
-      "id": 1,
-      "name": "sumit",
+      "id": 2,
+      "name": "prachi",
       "course": "computer science"
     },
     {
-      "id": 1,
-      "name": "sumit",
+      "id": 3,
+      "name": "mohit",
       "course": "computer science"
     },
     {
-      "id": 1,
-      "name": "sumit",
+      "id": 4,
+      "name": "vansh",
       "course": "computer science"
     },
     {
-      "id": 1,
-      "name": "sumit",
+      "id": 5,
+      "name": "arya",
       "course": "computer science"
     }
   ]
