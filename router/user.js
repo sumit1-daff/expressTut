@@ -1,6 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const userController = require('../controller/user.js');
+
+/*********API*********ENDPOINT*************ROUTE*********************** */
  //POST API - CREATE API
  router.post("/", userController.addUser);
 //GET USERS - READ API

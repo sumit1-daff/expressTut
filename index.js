@@ -1,14 +1,23 @@
+require('dotenv').config();
 const express = require("express");
 const morgan = require('morgan');
-const userRouter = require('./router/user')
+const mongoose = require('mongoose');
+const { Schema } = mongoose;
+const userRouter = require('./router/user');
 const server = express();
+
+main().catch(err => console.log(err));
+
+async function main() {
+  await mongoose.connect('mongodb://127.0.0.1:27017/users');
+}
 /*******************************MIDDLEWARE******************************************/
 server.use(express.json()); //body parser
 server.use('/users',userRouter.router);
 // server.use(express.urlencoded()) // url parser jaisa kuch hai!
 
 // server.use(morgan('default'));
-server.use(express.static("public"));
+server.use(express.static(process.env.PUBLIC_DIR));
 // server.use((req, res, next) => { //application middleware which covers whole application
 //   console.log(
 //     req.method,
@@ -31,8 +40,6 @@ const auth = (req, res, next) => { //Route Middle ware which can be passed as a 
   }
 };
 
-/*********API*********ENDPOINT*************ROUTE*********************** */
 
-server.listen(8080, () => {
-  console.log("Server Started");
+server.listen(process.env.PORT, () => {
 });
