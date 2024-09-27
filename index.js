@@ -2,15 +2,15 @@ require('dotenv').config();
 const express = require("express");
 const morgan = require('morgan');
 const mongoose = require('mongoose');
-const { Schema } = mongoose;
+
 const userRouter = require('./router/user');
 const server = express();
 
 main().catch(err => console.log(err));
-
 async function main() {
   await mongoose.connect('mongodb://127.0.0.1:27017/users');
 }
+
 /*******************************MIDDLEWARE******************************************/
 server.use(express.json()); //body parser
 server.use('/users',userRouter.router);
