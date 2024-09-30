@@ -8,7 +8,7 @@ const server = express();
 
 main().catch(err => console.log(err));
 async function main() {
-  await mongoose.connect('mongodb://127.0.0.1:27017/users');
+  await mongoose.connect('mongodb://127.0.0.1:27017/mydb');
 }
 
 /*******************************MIDDLEWARE******************************************/
@@ -39,7 +39,6 @@ const auth = (req, res, next) => { //Route Middle ware which can be passed as a 
     res.sendStatus(401);
   }
 };
-
 
 server.listen(process.env.PORT, () => {
 });

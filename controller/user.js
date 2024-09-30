@@ -32,7 +32,7 @@ exports.replaceUser = (req, res) => {
   exports.getUser = (req, res) => {
     //console.log(req.params); // it reads the parametes passed in the url.
     const id = +req.params.id;
-    const user = users.find(u=>u.id===id);
+    const user = User.findOne({id:1}).exec();
     res.json(user);
   }
 
